@@ -50,3 +50,19 @@ st.bar_chart(
     x="week",
     y="Remote",
 )
+
+# My Additions
+import matplotlib.pyplot as plt
+import streamlit as st
+
+# Add a simple bar chart
+data = [10, 20, 30, 40]
+st.bar_chart(data)
+
+# Add descriptive text
+st.markdown("## Dashboard Overview")
+st.write("This dashboard visualizes key metrics about XYZ.")
+
+# Add interactive components
+slider_val = st.slider("Select a value", 0, 100)
+st.write(f"Slider value is: {slider_val}")
