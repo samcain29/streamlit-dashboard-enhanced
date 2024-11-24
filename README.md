@@ -16,14 +16,15 @@ This project focuses on creating a Streamlit dashboard to visualize and explore 
   - Exposes the cleaned dataset for inspection.
 
 ### My Additions
-- **Interactive Widgets**:
-  - Added a slider to allow users to select values dynamically, showcasing Streamlit's interactivity.
-- **Descriptive Text**:
-  - Included a section to describe the purpose and features of the dashboard.
-- **Additional Visualization**:
-  - Added a sample bar chart as a simple example of interactive data visualization.
+- **Interactive Slider**:
+  - A date slider allows users to filter data by specific weeks within the dataset range.
+  - Filters data dynamically based on the selected week and displays the relevant rows.
+- **Dynamic Bar Chart**:
+  - Visualizes the total number of students by learning modality (Hybrid, In-Person, Remote) for the selected week.
+- **Empty Data Handling**:
+  - Displays a fallback message if no data is available for the selected week.
 
 ---
 
 ### Deployed App
-[Streamlit Dashboard URL](https://bookish-space-train-4jgr76qg677vh7qjw-8502.app.github.dev/)
+[Streamlit Dashboard URL](https://bookish-space-train-4jgr76qg677vh7qjw-8504.app.github.dev/)
