@@ -55,14 +55,40 @@ st.bar_chart(
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Add a simple bar chart
-data = [10, 20, 30, 40]
-st.bar_chart(data)
-
 # Add descriptive text
-st.markdown("## Dashboard Overview")
-st.write("This dashboard visualizes key metrics about XYZ.")
+st.markdown("## Dashboard Additions")
 
-# Add interactive components
-slider_val = st.slider("Select a value", 0, 100)
-st.write(f"Slider value is: {slider_val}")
+# Add a slider to filter data by week
+import datetime
+
+# Convert pandas Timestamp objects to Python datetime.date
+min_date = df['week_recoded'].min().date()
+max_date = df['week_recoded'].max().date()
+
+# Create a slider to select a specific week
+selected_date = st.slider(
+    "Select a week to filter the data:",
+    min_value=min_date,
+    max_value=max_date,
+    value=min_date,
+    format="YYYY-MM-DD"
+)
+
+# Filter data based on the selected date
+filtered_data = df[df['week_recoded'].dt.date == selected_date]
+
+# Display the filtered data
+st.markdown(f"### Data for the selected week: {selected_date}")
+if not filtered_data.empty:
+    st.dataframe(filtered_data)
+
+    # Additional Visualization: Total students by learning modality for the selected week
+    modality_counts = filtered_data.groupby('learning_modality')['student_count'].sum().reset_index()
+    modality_counts.columns = ['Learning Modality', 'Student Count']
+
+    # Create a bar chart for the selected week's learning modalities
+    st.markdown("### Total Students by Learning Modality")
+    st.bar_chart(modality_counts.set_index('Learning Modality'))
+else:
+    st.write("No data available for the selected week.")
+
